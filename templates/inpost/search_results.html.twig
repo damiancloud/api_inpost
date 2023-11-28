@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h1>Search Results</h1>
+
+    {% if results is empty %}
+        <p>No results found.</p>
+    {% else %}
+        <p>Number of pickup points: {{ results|length }}</p>
+
+        <ol>
+            {% for key, result in results %}
+                <li>
+                    <strong>Punkt {{ key+1 }}:</strong>
+
+                    {% if result['name'] is defined %}
+                        {{ result['name'] }}
+                    {% endif %}
+                    
+                    {% if result['address']['city'] is defined %}
+                        {{ result['address']['city'] }}
+                    {% endif %}
+                    {% if result['address']['street'] is defined %}
+                        {{ result['address']['street'] }}
+                    {% endif %}
+                    {% if result['address']['building_number'] is defined %}
+                        {{ result['address']['building_number'] }}
+                    {% endif %}
+                    {% if result['address']['post_code'] is defined %}
+                        {{ result['address']['post_code'] }}
+                    {% endif %}
+                    {% if result['address']['flat_number'] is defined %}
+                        Mieszkanie: {{ result['address']['flat_number'] }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endblock %}

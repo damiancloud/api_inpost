@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: image-php_to_pgsql
+    container_name: container
+    restart: always
+    working_dir: /var/www
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./:/var/www
+  nginx:
+    image: nginx:1.19-alpine
+    container_name: container-nginex
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d
