@@ -40,7 +40,7 @@ make console
 
 Run command
 ```bash
-/var/www# $ php bin/console inpostApi points Kozy`
+/var/www# $ php bin/console inpostApi points Kozy
 ```
 Run web app
 ```bash
